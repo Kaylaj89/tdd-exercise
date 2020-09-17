@@ -3,7 +3,7 @@
 VALID_CARDS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King', 'Ace']
 
 def blackjack_score(hand)
-  raise ArgumentError, "Too many cards!" if hand.length > 5
+  raise ArgumentError, "Oopsie. Your card count is off!! Hand must be between 2 and 5." if hand.length < 2 || hand.length > 5
 
   score = 0
     hand.each do |card|
