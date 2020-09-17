@@ -77,4 +77,16 @@ describe 'Blackjack Score' do
     }.must_raise ArgumentError
   end
 
+  it 'accurately calculates the score of more than one Ace in a hand' do
+
+    # Arrange
+    hand = ["Ace", "Ace", "Ace", "Ace"]
+
+    # Act
+    score = blackjack_score(hand)
+
+    #Assert
+    expect(score).must_equal 14
+  end
+
 end
