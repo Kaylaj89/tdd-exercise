@@ -1,34 +1,36 @@
 # blackjack_score.rb
 
 VALID_CARDS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King', 'Ace']
-
+hand = ["Ace", "Ace", "Ace", "Ace"]
 def blackjack_score(hand)
-  raise ArgumentError, "Oopsie. Your card count is off!! Hand must be between 2 and 5." if hand.length < 2 || hand.length > 5
+raise ArgumentError, "Oopsie. Your card count is off!! Hand must be between 2 and 5." if hand.length < 2 || hand.length > 5
 
-  score = 0
-    hand.each do |card|
-      raise ArgumentError, "Sorry, #{card} is an invalid card." if !VALID_CARDS.include?(card)
+score = 0
+hand.each do |card|
+  raise ArgumentError, "Sorry, #{card} is an invalid card." if !VALID_CARDS.include?(card)
 
-      case card
-      when 2, 3, 4, 5, 6, 7, 8, 9
-        score += card
-      when "Jack", "Queen", "King"
-        score += 10
-      when "Ace"
-        score += 11
-      end
+  case card
+  when 2, 3, 4, 5, 6, 7, 8, 9
+    score += card
+  when "Jack", "Queen", "King"
+    score += 10
+  when "Ace"
+    score += 11
+  end
+end
+
+if score > 21
+  hand.each do |card|
+    if card == "Ace"
+      score -= 10
+      break if score < 21
     end
+  end
+end
 
-  #Make Aces a '1' if score goes over 21
-        if hand.include? "Ace" && if score > 21
-          score -= 10
-          end
-        end
+raise ArgumentError, "Bummer! You went over 21. Better luck next time!" if score > 21
 
-     raise ArgumentError, "Bummer! You went over 21. Better luck next time!" if score > 21
-
-  return score
-
+return score
 end
 
 #You will write a method called:  `blackjack_score` which take an array of card values and returns the blackjack score.  The card values can be any of the following, number values 1-9, "King", "Queen", "Jack".  If the array contains an invalid card value or the total exceeds 21, raise an `ArgumentError`.  For example `blackjack_score([1, 5, 3])` will return 19.  You should also raise an error if the hand contains more than 5 cards.
