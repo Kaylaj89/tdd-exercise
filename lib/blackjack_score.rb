@@ -1,14 +1,15 @@
 # blackjack_score.rb
 
 VALID_CARDS = [2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King', 'Ace']
-hand = ["Ace", "Ace", "Ace", "Ace"]
+
 def blackjack_score(hand)
-raise ArgumentError, "Oopsie. Your card count is off!! Hand must be between 2 and 5." if hand.length < 2 || hand.length > 5
+raise ArgumentError, "OOPS. Your card count is off!! Hand must be between 2 and 5." if hand.length < 2 || hand.length > 5
 
 score = 0
 hand.each do |card|
   raise ArgumentError, "Sorry, #{card} is an invalid card." if !VALID_CARDS.include?(card)
 
+  #Scoring Rubric
   case card
   when 2, 3, 4, 5, 6, 7, 8, 9
     score += card
@@ -19,6 +20,7 @@ hand.each do |card|
   end
 end
 
+#Handling Ace value if score over 21
 if score > 21
   hand.each do |card|
     if card == "Ace"
