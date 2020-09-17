@@ -20,10 +20,10 @@ def blackjack_score(hand)
     end
 
   #Make Aces a '1' if score goes over 21
-    if hand.include? "Ace" && if score > 21
-        score -= 10
+        if hand.include? "Ace" && if score > 21
+          score -= 10
+          end
         end
-    end
 
      raise ArgumentError, "Bummer! You went over 21. Better luck next time!" if score > 21
 
